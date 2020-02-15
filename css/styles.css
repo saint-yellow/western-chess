@@ -1,0 +1,86 @@
+.grid {
+    width: 64px; 
+    height: 64px; 
+    position: relative;
+}
+
+.grid.white {
+    background-color: saddlebrown;
+}
+
+.grid.black {
+    background-color: sandybrown;
+}
+
+.chess {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.chess.black.rook {
+    background-image: url("./../img/chesses/black-rook.png");
+}
+
+.chess.black.knight {
+    background-image: url("./../img/chesses/black-knight.png");
+}
+
+.chess.black.bishop {
+    background-image: url("./../img/chesses/black-bishop.png");
+}
+
+.chess.black.queen {
+    background-image: url("./../img/chesses/black-queen.png");
+}
+
+.chess.black.king {
+    background-image: url("./../img/chesses/black-king.png");
+}
+
+.chess.black.pawn {
+    background-image: url("./../img/chesses/black-pawn.png");
+}
+
+.chess.white.rook {
+    background-image: url("./../img/chesses/white-rook.png");
+}
+
+.chess.white.knight {
+    background-image: url("./../img/chesses/white-knight.png");
+}
+
+.chess.white.bishop {
+    background-image: url("./../img/chesses/white-bishop.png");
+}
+
+.chess.white.queen {
+    background-image: url("./../img/chesses/white-queen.png");
+}
+
+.chess.white.king {
+    background-image: url("./../img/chesses/white-king.png");
+}
+
+.chess.white.pawn {
+    background-image: url("./../img/chesses/white-pawn.png");
+}
+
+.field {
+    width: 512px;
+    height: 512px;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    margin: auto;
+}
+
+.grid:hover {
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    box-shadow: 
+        0 0 0.4vw 0 yellowgreen,
+        0 0 0.7vw 0.3vw yellowgreen;
+}
