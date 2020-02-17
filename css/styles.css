@@ -1,6 +1,28 @@
+.blank {
+    width: 32px;
+    height: 32px;
+    margin: 1px;
+}
+
+.x-axis {
+    width: 64px;
+    height: 32px;
+    margin: 1px;
+    text-align: center;
+}
+
+.y-axis {
+    width: 32px;
+    height: 64px;
+    line-height: 64px;
+    margin: 1px;
+    text-align: center;
+}
+
 .grid {
     width: 64px; 
-    height: 64px; 
+    height: 64px;
+    margin: 1px; 
     position: relative;
 }
 
@@ -67,8 +89,9 @@
 }
 
 .field {
-    width: 512px;
-    height: 512px;
+    width: 562px;
+    height: 562px;
+    margin: 1px;
     background-size: 100% 100%;
     background-repeat: no-repeat;
     display: flex;
@@ -84,3 +107,4 @@
         0 0 0.4vw 0 yellowgreen,
         0 0 0.7vw 0.3vw yellowgreen;
 }
+
