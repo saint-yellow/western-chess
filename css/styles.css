@@ -9,6 +9,7 @@
     height: 32px;
     margin: 1px;
     text-align: center;
+    font-weight: bold;
 }
 
 .y-axis {
@@ -17,6 +18,7 @@
     line-height: 64px;
     margin: 1px;
     text-align: center;
+    font-weight: bold;
 }
 
 .grid {
@@ -34,6 +36,14 @@
     background-color: sandybrown;
 }
 
+.grid.around {
+    background-color: aquamarine;
+}
+
+.grid.active {
+    background-color: yellowgreen;
+}
+
 .chess {
     position: absolute;
     width: 100%;
@@ -41,56 +51,56 @@
 }
 
 .chess.black.rook {
-    background-image: url("./../img/chesses/black-rook.png");
+    background-image: url(./../img/chesses/black-rook.png);
 }
 
 .chess.black.knight {
-    background-image: url("./../img/chesses/black-knight.png");
+    background-image: url(./../img/chesses/black-knight.png);
 }
 
 .chess.black.bishop {
-    background-image: url("./../img/chesses/black-bishop.png");
+    background-image: url(./../img/chesses/black-bishop.png);
 }
 
 .chess.black.queen {
-    background-image: url("./../img/chesses/black-queen.png");
+    background-image: url(./../img/chesses/black-queen.png);
 }
 
 .chess.black.king {
-    background-image: url("./../img/chesses/black-king.png");
+    background-image: url(./../img/chesses/black-king.png);
 }
 
 .chess.black.pawn {
-    background-image: url("./../img/chesses/black-pawn.png");
+    background-image: url(./../img/chesses/black-pawn.png);
 }
 
 .chess.white.rook {
-    background-image: url("./../img/chesses/white-rook.png");
+    background-image: url(./../img/chesses/white-rook.png);
 }
 
 .chess.white.knight {
-    background-image: url("./../img/chesses/white-knight.png");
+    background-image: url(./../img/chesses/white-knight.png);
 }
 
 .chess.white.bishop {
-    background-image: url("./../img/chesses/white-bishop.png");
+    background-image: url(./../img/chesses/white-bishop.png);
 }
 
 .chess.white.queen {
-    background-image: url("./../img/chesses/white-queen.png");
+    background-image: url(./../img/chesses/white-queen.png);
 }
 
 .chess.white.king {
-    background-image: url("./../img/chesses/white-king.png");
+    background-image: url(./../img/chesses/white-king.png);
 }
 
 .chess.white.pawn {
-    background-image: url("./../img/chesses/white-pawn.png");
+    background-image: url(./../img/chesses/white-pawn.png);
 }
 
 .field {
-    width: 562px;
-    height: 562px;
+    width: 596px;
+    height: 596px;
     margin: 1px;
     background-size: 100% 100%;
     background-repeat: no-repeat;
@@ -102,9 +112,9 @@
 
 .grid:hover {
     cursor: pointer;
-    transition: transform 0.2s ease;
+    transition: transform 0.2s ease-in-out;
     box-shadow: 
-        0 0 0.4vw 0 yellowgreen,
-        0 0 0.7vw 0.3vw yellowgreen;
+        0 0 0.4vw 0 lightslategray,
+        0 0 0.7vw 0.3vw lightslategray;
 }
 
