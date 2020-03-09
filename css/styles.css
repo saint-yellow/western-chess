@@ -36,12 +36,16 @@
     background-color: sandybrown;
 }
 
-.grid.around {
-    background-color: aquamarine;
-}
-
 .grid.active {
     background-color: yellowgreen;
+}
+
+.grid.movable-scope {
+    background-color: crimson;
+}
+
+.grid.attackable-scope {
+    background-color: lightseagreen;
 }
 
 .chess {
@@ -98,7 +102,7 @@
     background-image: url(./../img/chesses/white-pawn.png);
 }
 
-.field {
+.board {
     width: 596px;
     height: 596px;
     margin: 1px;
@@ -107,7 +111,7 @@
     display: flex;
     flex-wrap: wrap;
     align-content: flex-start;
-    margin: auto;
+    /* margin: auto; */
 }
 
 .grid:hover {
@@ -118,3 +122,8 @@
         0 0 0.7vw 0.3vw lightslategray;
 }
 
+#progress {
+    width: 596px;
+    height: 596px;
+    margin: 1px;
+}
