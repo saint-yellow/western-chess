@@ -323,22 +323,24 @@ function game() {
 
             var step = 1;
 
+            var tempGrid;
+
             var topGrid = top(centerGrid);
             while (topGrid != undefined && step != 2) {
                 topGrid = top(topGrid);
                 step += 1;
             }
             if (topGrid != undefined) {
-                var leftGrid = left(topGrid);
-                if (leftGrid != undefined && leftGrid.children().length == 0) {
-                    leftGrid.toggleClass("movable-scope");
-                    scope.push(leftGrid.attr("id"));
+                tempGrid = left(topGrid);
+                if (tempGrid != undefined && tempGrid.children().length == 0) {
+                    tempGrid.toggleClass("movable-scope");
+                    scope.push(tempGrid.attr("id"));
                 }
 
-                var rightGrid = right(topGrid);
-                if (rightGrid != undefined && rightGrid.children().length == 0) {
-                    rightGrid.toggleClass("movable-scope");
-                    scope.push(rightGrid.attr("id"));
+                tempGrid = right(topGrid);
+                if (tempGrid != undefined && tempGrid.children().length == 0) {
+                    tempGrid.toggleClass("movable-scope");
+                    scope.push(tempGrid.attr("id"));
                 }
             }
             step = 1;
@@ -349,16 +351,16 @@ function game() {
                 step += 1;
             }
             if (rightGrid != undefined) {
-                var topGrid = top(rightGrid);
-                if (topGrid != undefined && topGrid.children().length == 0) {
-                    topGrid.toggleClass("movable-scope");
-                    scope.push(topGrid.attr("id"));
+                tempGrid = top(rightGrid);
+                if (tempGrid != undefined && tempGrid.children().length == 0) {
+                    tempGrid.toggleClass("movable-scope");
+                    scope.push(tempGrid.attr("id"));
                 }
 
-                var bottomGrid = bottom(rightGrid);
-                if (bottomGrid != undefined && bottomGrid.children().length == 0) {
-                    bottomGrid.toggleClass("movable-scope");
-                    scope.push(bottomGrid.attr("id"));
+                tempGrid = bottom(rightGrid);
+                if (tempGrid != undefined && tempGrid.children().length == 0) {
+                    tempGrid.toggleClass("movable-scope");
+                    scope.push(tempGrid.attr("id"));
                 }
             }
             step = 1;
@@ -369,16 +371,16 @@ function game() {
                 step += 1;
             }
             if (bottomGrid != undefined) {
-                var rightGrid = right(bottomGrid);
-                if (rightGrid != undefined && rightGrid.children().length == 0) {
-                    rightGrid.toggleClass("movable-scope");
-                    scope.push(rightGrid.attr("id"));
+                tempGrid = right(bottomGrid);
+                if (tempGrid != undefined && tempGrid.children().length == 0) {
+                    tempGrid.toggleClass("movable-scope");
+                    scope.push(tempGrid.attr("id"));
                 }
 
-                var leftGrid = left(bottomGrid);
-                if (leftGrid != undefined && leftGrid.children().length == 0) {
-                    leftGrid.toggleClass("movable-scope");
-                    scope.push(leftGrid.attr("id"));
+                tempGrid = left(bottomGrid);
+                if (tempGrid != undefined && tempGrid.children().length == 0) {
+                    tempGrid.toggleClass("movable-scope");
+                    scope.push(tempGrid.attr("id"));
                 }
             }
             step = 1;
@@ -389,16 +391,16 @@ function game() {
                 step += 1;
             }
             if (leftGrid != undefined) {
-                var bottomGrid = bottom(leftGrid);
-                if (bottomGrid != undefined && bottomGrid.children().length == 0) {
-                    bottomGrid.toggleClass("movable-scope");
-                    scope.push(bottomGrid.attr("id"));
+                tempGrid = bottom(leftGrid);
+                if (tempGrid != undefined && tempGrid.children().length == 0) {
+                    tempGrid.toggleClass("movable-scope");
+                    scope.push(tempGrid.attr("id"));
                 }
 
-                var topGrid = top(leftGrid);
-                if (topGrid != undefined && topGrid.children().length == 0) {
-                    topGrid.toggleClass("movable-scope");
-                    scope.push(topGrid.attr("id"));
+                tempGrid = top(leftGrid);
+                if (tempGrid != undefined && tempGrid.children().length == 0) {
+                    tempGrid.toggleClass("movable-scope");
+                    scope.push(tempGrid.attr("id"));
                 }
             }
             step = 1;
@@ -675,6 +677,7 @@ function game() {
             var centerGrid = piece.parent();
 
             var step = 1;
+            var tempGrid;
 
             var topGrid = top(centerGrid);
             while (topGrid != undefined && step != 2) {
@@ -682,15 +685,15 @@ function game() {
                 step += 1;
             }
             if (topGrid != undefined) {
-                var leftGrid = left(topGrid);
-                if (leftGrid != undefined && leftGrid.children().length == 1 && $(leftGrid.children()[0]).attr("color") != piece.attr("color")) {
-                    leftGrid.toggleClass("attackable-scope");
-                    scope.push(leftGrid.attr("id"));
+                tempGrid = left(topGrid);
+                if (tempGrid != undefined && tempGrid.children().length == 1 && $(tempGrid.children()[0]).attr("color") != piece.attr("color")) {
+                    tempGrid.toggleClass("attackable-scope");
+                    scope.push(tempGrid.attr("id"));
                 }
-                var rightGrid = right(topGrid);
-                if (rightGrid != undefined && rightGrid.children().length == 1 && $(rightGrid.children()[0]).attr("color") != piece.attr("color")) {
-                    rightGrid.toggleClass("attackable-scope");
-                    scope.push(rightGrid.attr("id"));
+                tempGrid = right(topGrid);
+                if (tempGrid != undefined && tempGrid.children().length == 1 && $(tempGrid.children()[0]).attr("color") != piece.attr("color")) {
+                    tempGrid.toggleClass("attackable-scope");
+                    scope.push(tempGrid.attr("id"));
                 }
             }
             step = 1;
@@ -701,15 +704,15 @@ function game() {
                 step += 1;
             }
             if (rightGrid != undefined) {
-                var topGrid = top(rightGrid);
-                if (topGrid != undefined && topGrid.children().length == 1 && $(topGrid.children()[0]).attr("color") != piece.attr("color")) {
-                    topGrid.toggleClass("attackable-scope");
-                    scope.push(topGrid.attr("id"));
+                tempGrid = top(rightGrid);
+                if (tempGrid != undefined && tempGrid.children().length == 1 && $(tempGrid.children()[0]).attr("color") != piece.attr("color")) {
+                    tempGrid.toggleClass("attackable-scope");
+                    scope.push(tempGrid.attr("id"));
                 }
-                var bottomGrid = bottom(rightGrid);
-                if (bottomGrid != undefined && bottomGrid.children().length == 1 && $(bottomGrid.children()[0]).attr("color") != piece.attr("color")) {
-                    bottomGrid.toggleClass("attackable-scope");
-                    scope.push(bottomGrid.attr("id"));
+                tempGrid = bottom(rightGrid);
+                if (tempGrid != undefined && tempGrid.children().length == 1 && $(tempGrid.children()[0]).attr("color") != piece.attr("color")) {
+                    tempGrid.toggleClass("attackable-scope");
+                    scope.push(tempGrid.attr("id"));
                 }
             }
             step = 1;
@@ -720,15 +723,15 @@ function game() {
                 step += 1;
             }
             if (bottomGrid != undefined) {
-                var rightGrid = right(bottomGrid);
-                if (rightGrid != undefined && rightGrid.children().length == 1 && $(rightGrid.children()[0]).attr("color") != piece.attr("color")) {
-                    rightGrid.toggleClass("attackable-scope");
-                    scope.push(rightGrid.attr("id"));
+                tempGrid = right(bottomGrid);
+                if (tempGrid != undefined && tempGrid.children().length == 1 && $(tempGrid.children()[0]).attr("color") != piece.attr("color")) {
+                    tempGrid.toggleClass("attackable-scope");
+                    scope.push(tempGrid.attr("id"));
                 }
-                var leftGrid = left(bottomGrid);
-                if (leftGrid != undefined && leftGrid.children().length == 1 && $(leftGrid.children()[0]).attr("color") != piece.attr("color")) {
-                    leftGrid.toggleClass("attackable-scope");
-                    scope.push(leftGrid.attr("id"));
+                tempGrid = left(bottomGrid);
+                if (tempGrid != undefined && tempGrid.children().length == 1 && $(tempGrid.children()[0]).attr("color") != piece.attr("color")) {
+                    tempGrid.toggleClass("attackable-scope");
+                    scope.push(tempGrid.attr("id"));
                 }
             }
             step = 1;
@@ -739,20 +742,19 @@ function game() {
                 step += 1;
             }
             if (leftGrid != undefined) {
-                var bottomGrid = bottom(leftGrid);
-                if (bottomGrid != undefined && bottomGrid.children().length == 1 && $(bottomGrid.children()[0]).attr("color") != piece.attr("color")) {
-                    bottomGrid.toggleClass("attackable-scope");
-                    scope.push(bottomGrid.attr("id"));
+                tempGrid = bottom(leftGrid);
+                if (tempGrid != undefined && tempGrid.children().length == 1 && $(tempGrid.children()[0]).attr("color") != piece.attr("color")) {
+                    tempGrid.toggleClass("attackable-scope");
+                    scope.push(tempGrid.attr("id"));
                 }
-                var topGrid = top(leftGrid);
-                if (topGrid != undefined && topGrid.children().length == 1 && $(topGrid.children()[0]).attr("color") != piece.attr("color")) {
-                    topGrid.toggleClass("attackable-scope");
-                    scope.push(topGrid.attr("id"));
+                tempGrid = top(leftGrid);
+                if (tempGrid != undefined && tempGrid.children().length == 1 && $(tempGrid.children()[0]).attr("color") != piece.attr("color")) {
+                    tempGrid.toggleClass("attackable-scope");
+                    scope.push(tempGrid.attr("id"));
                 }
             }
             step = 1;
             
-
             return scope;
         }
 
