@@ -8,10 +8,12 @@
 - 布局
 - 单人对局
 - 各类棋子的走法
-- 简单的checkmate感知
+- 简单的checkmate perception
 
 ### 以后可能会做的事
 - 优化代码
+- 胜负判定
+- 更准确的checkmate perception
 - 动画
 - 基于TypeScript的React化
 - 添加后端 (Falsk/ASP.NET Core/...)
