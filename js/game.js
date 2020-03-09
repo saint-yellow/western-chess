@@ -27,15 +27,6 @@ function game() {
         $(".grid.attackable-scope").removeClass("attackable-scope");
     }
 
-    $(".grid").mouseenter(function() {
-        console.log("top", top(this));
-        console.log("right", right(this));
-        console.log("bottom", bottom(this));
-        console.log("left", left(this));
-        console.log("center", $(this));
-        console.log(isMargin(this));
-    });
-
     $(".grid").click(function () {
         var $grid = $(this);
         var movableGrids = [];
