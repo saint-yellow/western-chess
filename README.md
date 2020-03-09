@@ -16,7 +16,7 @@
 - 更准确的checkmate perception
 - 动画
 - 基于TypeScript的React化
-- 添加后端 (Falsk/ASP.NET Core/...)
+- 添加后端 (Flask/ASP.NET Core/...)
 - 双人对局
 - etc
 
