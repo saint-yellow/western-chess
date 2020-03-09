@@ -317,6 +317,95 @@ function game() {
             return scope;
         }
 
+        // 骑士
+        if (piece.hasClass("knight")) {
+            var centerGrid = piece.parent();
+
+            var step = 1;
+
+            var topGrid = top(centerGrid);
+            while (topGrid != undefined && step != 2) {
+                topGrid = top(topGrid);
+                step += 1;
+            }
+            if (topGrid != undefined) {
+                var leftGrid = left(topGrid);
+                if (leftGrid != undefined && leftGrid.children().length == 0) {
+                    leftGrid.toggleClass("movable-scope");
+                    scope.push(leftGrid.attr("id"));
+                }
+
+                var rightGrid = right(topGrid);
+                if (rightGrid != undefined && rightGrid.children().length == 0) {
+                    rightGrid.toggleClass("movable-scope");
+                    scope.push(rightGrid.attr("id"));
+                }
+            }
+            step = 1;
+
+            var rightGrid = right(centerGrid);
+            while (rightGrid != undefined && step != 2) {
+                rightGrid = right(rightGrid);
+                step += 1;
+            }
+            if (rightGrid != undefined) {
+                var topGrid = top(rightGrid);
+                if (topGrid != undefined && topGrid.children().length == 0) {
+                    topGrid.toggleClass("movable-scope");
+                    scope.push(topGrid.attr("id"));
+                }
+
+                var bottomGrid = bottom(rightGrid);
+                if (bottomGrid != undefined && bottomGrid.children().length == 0) {
+                    bottomGrid.toggleClass("movable-scope");
+                    scope.push(bottomGrid.attr("id"));
+                }
+            }
+            step = 1;
+
+            var bottomGrid = bottom(centerGrid);
+            while (bottomGrid != undefined && step != 2) {
+                bottomGrid = bottom(bottomGrid);
+                step += 1;
+            }
+            if (bottomGrid != undefined) {
+                var rightGrid = right(bottomGrid);
+                if (rightGrid != undefined && rightGrid.children().length == 0) {
+                    rightGrid.toggleClass("movable-scope");
+                    scope.push(rightGrid.attr("id"));
+                }
+
+                var leftGrid = left(bottomGrid);
+                if (leftGrid != undefined && leftGrid.children().length == 0) {
+                    leftGrid.toggleClass("movable-scope");
+                    scope.push(leftGrid.attr("id"));
+                }
+            }
+            step = 1;
+
+            var leftGrid = left(centerGrid);
+            while (leftGrid != undefined && step != 2) {
+                leftGrid = left(leftGrid);
+                step += 1;
+            }
+            if (leftGrid != undefined) {
+                var bottomGrid = bottom(leftGrid);
+                if (bottomGrid != undefined && bottomGrid.children().length == 0) {
+                    bottomGrid.toggleClass("movable-scope");
+                    scope.push(bottomGrid.attr("id"));
+                }
+
+                var topGrid = top(leftGrid);
+                if (topGrid != undefined && topGrid.children().length == 0) {
+                    topGrid.toggleClass("movable-scope");
+                    scope.push(topGrid.attr("id"));
+                }
+            }
+            step = 1;
+
+            return scope;
+        }
+
         // 城堡
         if (piece.hasClass("rook")) {
             var centerGrid = piece.parent();
@@ -577,6 +666,92 @@ function game() {
                     topleftGrid = topleft(topleftGrid);
                 }
             }
+
+            return scope;
+        }
+
+        // 骑士
+        if (piece.hasClass("knight")) {
+            var centerGrid = piece.parent();
+
+            var step = 1;
+
+            var topGrid = top(centerGrid);
+            while (topGrid != undefined && step != 2) {
+                topGrid = top(topGrid);
+                step += 1;
+            }
+            if (topGrid != undefined) {
+                var leftGrid = left(topGrid);
+                if (leftGrid != undefined && leftGrid.children().length == 1 && $(leftGrid.children()[0]).attr("color") != piece.attr("color")) {
+                    leftGrid.toggleClass("attackable-scope");
+                    scope.push(leftGrid.attr("id"));
+                }
+                var rightGrid = right(topGrid);
+                if (rightGrid != undefined && rightGrid.children().length == 1 && $(rightGrid.children()[0]).attr("color") != piece.attr("color")) {
+                    rightGrid.toggleClass("attackable-scope");
+                    scope.push(rightGrid.attr("id"));
+                }
+            }
+            step = 1;
+
+            var rightGrid = right(centerGrid);
+            while (rightGrid != undefined && step != 2) {
+                rightGrid = right(rightGrid);
+                step += 1;
+            }
+            if (rightGrid != undefined) {
+                var topGrid = top(rightGrid);
+                if (topGrid != undefined && topGrid.children().length == 1 && $(topGrid.children()[0]).attr("color") != piece.attr("color")) {
+                    topGrid.toggleClass("attackable-scope");
+                    scope.push(topGrid.attr("id"));
+                }
+                var bottomGrid = bottom(rightGrid);
+                if (bottomGrid != undefined && bottomGrid.children().length == 1 && $(bottomGrid.children()[0]).attr("color") != piece.attr("color")) {
+                    bottomGrid.toggleClass("attackable-scope");
+                    scope.push(bottomGrid.attr("id"));
+                }
+            }
+            step = 1;
+
+            var bottomGrid = bottom(centerGrid);
+            while (bottomGrid != undefined && step != 2) {
+                bottomGrid = bottom(bottomGrid);
+                step += 1;
+            }
+            if (bottomGrid != undefined) {
+                var rightGrid = right(bottomGrid);
+                if (rightGrid != undefined && rightGrid.children().length == 1 && $(rightGrid.children()[0]).attr("color") != piece.attr("color")) {
+                    rightGrid.toggleClass("attackable-scope");
+                    scope.push(rightGrid.attr("id"));
+                }
+                var leftGrid = left(bottomGrid);
+                if (leftGrid != undefined && leftGrid.children().length == 1 && $(leftGrid.children()[0]).attr("color") != piece.attr("color")) {
+                    leftGrid.toggleClass("attackable-scope");
+                    scope.push(leftGrid.attr("id"));
+                }
+            }
+            step = 1;
+
+            var leftGrid = left(centerGrid);
+            while (leftGrid != undefined && step != 2) {
+                leftGrid = left(leftGrid);
+                step += 1;
+            }
+            if (leftGrid != undefined) {
+                var bottomGrid = bottom(leftGrid);
+                if (bottomGrid != undefined && bottomGrid.children().length == 1 && $(bottomGrid.children()[0]).attr("color") != piece.attr("color")) {
+                    bottomGrid.toggleClass("attackable-scope");
+                    scope.push(bottomGrid.attr("id"));
+                }
+                var topGrid = top(leftGrid);
+                if (topGrid != undefined && topGrid.children().length == 1 && $(topGrid.children()[0]).attr("color") != piece.attr("color")) {
+                    topGrid.toggleClass("attackable-scope");
+                    scope.push(topGrid.attr("id"));
+                }
+            }
+            step = 1;
+            
 
             return scope;
         }
