@@ -48,6 +48,10 @@
     background-color: lightseagreen;
 }
 
+.grid.checkmate {
+    background-color: darkmagenta;
+}
+
 .chess {
     position: absolute;
     width: 100%;
