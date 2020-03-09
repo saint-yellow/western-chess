@@ -2,4 +2,4 @@
 
 ## 前端习作 #01: 国际象棋
 
-![img](./readme/preview.png)
+[![img](./readme/preview.png)](./readme/demo.mp4)
