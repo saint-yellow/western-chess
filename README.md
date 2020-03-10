@@ -1,6 +1,7 @@
 # saint-yellow/western-chess
 
 ## 前端习作 #01: 国际象棋
+- HTML+CSS+jQuery
 ![preview](./readme/preview.png)
 ![demo](./readme/demo.gif)
 
