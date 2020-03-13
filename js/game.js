@@ -71,7 +71,7 @@ function game() {
 
         action.push(getPosition($grid).join(""));
 
-        if (action.length == 2) {
+        if (action.length == 2 && action[0] != action[1]) {
             var $fromGrid = $("#"+action[0]);
             var $toGrid = $("#"+action[1]);
 
