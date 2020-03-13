@@ -4,10 +4,10 @@
 
 function game() {
     // 棋盘的横坐标轴
-    var xAxis = ["A", "B", "C", "D", "E", "F", "G", "H"];
+    const xAxis = ["A", "B", "C", "D", "E", "F", "G", "H"];
 
     // 棋盘的纵坐标轴
-    var yAxis = [1, 2, 3, 4, 5, 6, 7, 8];
+    const yAxis = [1, 2, 3, 4, 5, 6, 7, 8];
 
     // 棋子走一步的路线所包含的始末位置, 例如["A8", "A6"]表示棋子从A8格走到A6格
     var action = [];
@@ -27,7 +27,7 @@ function game() {
         for (var gridId of attackableGrids) {
             var grid = $("#"+gridId);
             if ($(grid.children()[0]).hasClass("king")) {
-                grid.toggleClass("checkmate");
+                color([gridId], "checkmate");
             }
         }
     }
@@ -61,19 +61,28 @@ function game() {
 
         if ($grid.children().length == 1) {
             var $piece1 = $($grid.children()[0]);
+
             movableGrids = movableScope($piece1);
+            color(movableGrids, "movable-scope");
+
             attackableGrids = attackableScope($piece1);
+            color(attackableGrids, "attackable-scope");
         }
 
         action.push(getPosition($grid).join(""));
+
         if (action.length == 2) {
             var $fromGrid = $("#"+action[0]);
             var $toGrid = $("#"+action[1]);
 
             if ($fromGrid.children()[0] != undefined) {
                 var $piece1 = $($fromGrid.children()[0]);
+
                 movableGrids = movableScope($piece1);
+                color(movableGrids, "movable-scope");
+
                 attackableGrids = attackableScope($piece1);
+                color(attackableGrids, "attackable-scope");
 
                 if ($toGrid.children()[0] != undefined) {
                     var $piece2 = $($toGrid.children()[0]);
@@ -84,8 +93,11 @@ function game() {
                             $toGrid.empty($piece2);
                             $toGrid.append($piece1);
 
-                            $fromGrid.toggleClass("active");
-                            $toGrid.toggleClass("active");
+                            color([$fromGrid.attr("id")], "active");
+                            // $fromGrid.toggleClass("active");
+
+                            color([$toGrid.attr("id")], "active");
+                            // $toGrid.toggleClass("active");
 
                             console.log($piece1.parent());
                             checkmate($piece1);
@@ -99,8 +111,11 @@ function game() {
                         $fromGrid.remove($piece1);
                         $toGrid.append($piece1);
 
-                        $fromGrid.toggleClass("active");
-                        $toGrid.toggleClass("active");
+                        color([$fromGrid.attr("id")], "active");
+                        // $fromGrid.toggleClass("active");
+
+                        color([$toGrid.attr("id")], "active");
+                        // $toGrid.toggleClass("active");
 
                         console.log($piece1.parent());
                         checkmate($piece1);
@@ -132,7 +147,6 @@ function game() {
                     for (var i = 1; i <= 2; i++) {
                         var $grid = $("#"+position[0]+(position[1]+i));
                         if ($grid.children().length == 0) {
-                            $grid.toggleClass("movable-scope");
                             scope.push($grid.attr("id"));
                         }
                     }
@@ -140,7 +154,6 @@ function game() {
                     for (var i = 1; i <= 1; i++) {
                         var $grid = $("#"+position[0]+(position[1]+i));
                         if ($grid.children().length == 0) {
-                            $grid.toggleClass("movable-scope");
                             scope.push($grid.attr("id"));
                         }
                     }
@@ -150,7 +163,6 @@ function game() {
                     for (var i = 1; i <= 2; i++) {
                         var $grid = $("#"+position[0]+(position[1]-i));
                         if ($grid.children().length == 0) {
-                            $grid.toggleClass("movable-scope");
                             scope.push($grid.attr("id"));
                         }
                     }
@@ -158,7 +170,6 @@ function game() {
                     for (var i = 1; i <= 1; i++) {
                         var $grid = $("#"+position[0]+(position[1]-i));
                         if ($grid.children().length == 0) {
-                            $grid.toggleClass("movable-scope");
                             scope.push($grid.attr("id"));
                         }
                     }
@@ -177,7 +188,6 @@ function game() {
             for (var direction of directions) {
                 tempGrid = direction(centerGrid);
                 if (tempGrid != undefined && tempGrid.children(".chess").length == 0) {
-                    tempGrid.toggleClass("movable-scope");
                     scope.push(tempGrid.attr("id"));
                 }
             }
@@ -195,7 +205,6 @@ function game() {
                 tempGrid = direction(centerGrid);
                 while (tempGrid != undefined) {
                     if (tempGrid.children().length == 0) {
-                        tempGrid.toggleClass("movable-scope");
                         scope.push(tempGrid.attr("id"));
                         tempGrid = direction(tempGrid);
                     } else {
@@ -217,7 +226,6 @@ function game() {
                 tempGrid = direction(centerGrid);
                 while (tempGrid != undefined) {
                     if (tempGrid.children().length == 0) {
-                        tempGrid.toggleClass("movable-scope");
                         scope.push(tempGrid.attr("id"));
                         tempGrid = direction(tempGrid);
                     } else {
@@ -249,7 +257,6 @@ function game() {
                     for (var direction of bidirection) {
                         farGrid = direction(nearGrid);
                         if (farGrid != undefined && farGrid.children(".chess").length == 0) {
-                            farGrid.toggleClass("movable-scope");
                             scope.push(farGrid.attr("id"));
                         }
                     }
@@ -269,7 +276,6 @@ function game() {
                 tempGrid = direction(centerGrid);
                 while (tempGrid != undefined) {
                     if (tempGrid.children().length == 0) {
-                        tempGrid.toggleClass("movable-scope");
                         scope.push(tempGrid.attr("id"));
                         tempGrid = direction(tempGrid);
                     } else {
@@ -294,7 +300,6 @@ function game() {
                 var topRightGrid = topright(centerGrid);
                 for (var grid of [topLeftGrid, topRightGrid]) {
                     if (grid != undefined && grid.children().length == 1 && $(grid.children()[0]).attr("color") != piece.attr("color")) {
-                        grid.toggleClass("attackable-scope");
                         scope.push(grid.attr("id"));
                     }
                 }            
@@ -304,7 +309,6 @@ function game() {
 
                 for (var grid of [bottomLeftGrid, bottomRightGrid]) {
                     if (grid != undefined && grid.children().length == 1 && $(grid.children()[0]).attr("color") != piece.attr("color")) {
-                        grid.toggleClass("attackable-scope");
                         scope.push(grid.attr("id"));
                     }
                 }
@@ -321,7 +325,6 @@ function game() {
             for (var direction of directions) {
                 tempGrid = direction(centerGrid);
                 if (tempGrid != undefined && tempGrid.children(".chess").length == 1 && $(tempGrid.children(".chess")[0]).attr("color") != piece.attr("color")) {
-                    tempGrid.toggleClass("attackable-scope");
                     scope.push(tempGrid.attr("id"));
                 }
             }
@@ -340,7 +343,6 @@ function game() {
                 while (tempGrid != undefined) {
                     if (tempGrid.children().length == 1) {
                         if ($(tempGrid.children()[0]).attr("color") != piece.attr("color")) {
-                            tempGrid.toggleClass("attackable-scope");
                             scope.push(tempGrid.attr("id"));                        
                         }
                         break;                   
@@ -364,7 +366,6 @@ function game() {
                 while (tempGrid != undefined) {
                     if (tempGrid.children().length == 1) {
                         if ($(tempGrid.children()[0]).attr("color") != piece.attr("color")) {
-                            tempGrid.toggleClass("attackable-scope");
                             scope.push(tempGrid.attr("id"));                        
                         }
                         break;                   
@@ -398,7 +399,6 @@ function game() {
                     for (var direction of bidirection) {
                         farGrid = direction(nearGrid);
                         if (farGrid != undefined && farGrid.children(".chess").length == 1 && $(farGrid.children(".chess")[0]).attr("color") != piece.attr("color")) {
-                            farGrid.toggleClass("attackable-scope");
                             scope.push(farGrid.attr("id"));
                         }
                     }
@@ -419,7 +419,6 @@ function game() {
                 while (tempGrid != undefined) {
                     if (tempGrid.children().length == 1) {
                         if ($(tempGrid.children()[0]).attr("color") != piece.attr("color")) {
-                            tempGrid.toggleClass("attackable-scope");
                             scope.push(tempGrid.attr("id"));                        
                         }
                         break;                   
