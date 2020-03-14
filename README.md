@@ -28,3 +28,6 @@ cd western-chess
 code .
 ```
 使用Visual Studio Code的Live Server插件启动该项目
+
+### 在线演示
+https://saint-yellow.github.io/western-chess
