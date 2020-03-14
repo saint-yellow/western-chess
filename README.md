@@ -1,7 +1,11 @@
 # saint-yellow/western-chess
 
-## 前端习作 #01: 国际象棋
-- HTML+CSS+jQuery
+## 前端习作 #01: 国际象棋, HTML+CSS+jQuery
+
+### 在线演示
+https://saint-yellow.github.io/western-chess
+
+### 截图演示
 ![preview](./readme/preview.png)
 ![demo](./readme/demo.gif)
 
@@ -28,6 +32,3 @@ cd western-chess
 code .
 ```
 使用Visual Studio Code的Live Server插件启动该项目
-
-### 在线演示
-https://saint-yellow.github.io/western-chess
