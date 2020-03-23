@@ -32,3 +32,6 @@ cd western-chess
 code .
 ```
 使用Visual Studio Code的Live Server插件启动该项目
+
+### 更新
+- fix: 黑白双方每回合只能移动自己的一只棋子 (2020-03-23)
