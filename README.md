@@ -29,7 +29,7 @@ https://saint-yellow.github.io/western-chess
 ```
 git clone https://github.com/saint-yellow/western-chess.git
 cd western-chess
-code .
+python -m http.server:6000
 ```
 使用Visual Studio Code的Live Server插件启动该项目
 
