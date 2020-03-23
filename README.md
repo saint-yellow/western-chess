@@ -31,7 +31,7 @@ git clone https://github.com/saint-yellow/western-chess.git
 cd western-chess
 python -m http.server:6000
 ```
-使用Visual Studio Code的Live Server插件启动该项目
+或者使用Visual Studio Code的Live Server插件启动该项目
 
 ### 更新
 - fix: 黑白双方每回合只能移动自己的一只棋子 (2020-03-23)
