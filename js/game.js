@@ -41,6 +41,7 @@ function game() {
 
     // 行动前褪色
     function clearBaforeMove() {
+        $(".grid").removeClass("active");
         $(".grid.checkmate").removeClass("checkmate");
     }
 
@@ -60,13 +61,17 @@ function game() {
         $grid.toggleClass("active");
 
         if ($grid.children().length == 1) {
+
             var $piece1 = $($grid.children()[0]);
+            if ($piece1.attr("color") != action[2]) {
+                action = [];
 
-            movableGrids = movableScope($piece1);
-            color(movableGrids, "movable-scope");
+                movableGrids = movableScope($piece1);
+                color(movableGrids, "movable-scope");
 
-            attackableGrids = attackableScope($piece1);
-            color(attackableGrids, "attackable-scope");
+                attackableGrids = attackableScope($piece1);
+                color(attackableGrids, "attackable-scope");
+            }
         }
 
         action.push(getPosition($grid).join(""));
@@ -77,6 +82,9 @@ function game() {
 
             if ($fromGrid.children()[0] != undefined) {
                 var $piece1 = $($fromGrid.children()[0]);
+
+                action.push($piece1.attr("color"));
+                action.push($piece1.attr("type"));
 
                 movableGrids = movableScope($piece1);
                 color(movableGrids, "movable-scope");
@@ -131,8 +139,6 @@ function game() {
             }
 
             clearAfterMove();
-
-            action = [];
         }
     });
 
