@@ -9,8 +9,7 @@ function game() {
     // 棋盘的纵坐标轴
     const yAxis = [1, 2, 3, 4, 5, 6, 7, 8];
 
-    // 棋子走一步的路线所包含的始末位置, 例如["A8", "A6"]表示棋子从A8格走到A6格
-    var action = [];
+    var action = []
 
     // 获取网格的ID
     function getPosition(grid) {
@@ -32,6 +31,19 @@ function game() {
         }
     }
 
+    // 结束游戏
+    function finish() {
+        if (document.getElementById("black-king") == undefined) {
+            alert("白方胜利");
+            return;
+        }
+
+        if (document.getElementById("white-king") == undefined) {
+            alert("黑方胜利");
+            return;
+        }
+    }
+
     // 着色
     function color(grids, className) {
         for (var grid of grids) {
@@ -42,6 +54,8 @@ function game() {
     // 行动前褪色
     function clearBaforeMove() {
         $(".grid").removeClass("active");
+        $(".grid.movable-scope").removeClass("movable-scope");
+        $(".grid.attackable-scope").removeClass("attackable-scope");
         $(".grid.checkmate").removeClass("checkmate");
     }
 
@@ -52,93 +66,113 @@ function game() {
         $(".grid.attackable-scope").removeClass("attackable-scope");
     }
 
+    // 清楚行动记录
+    function clearAction() {
+        while (action.length > 0) {
+            action.pop();
+        }
+    }
+
     $(".grid").click(function () {
         clearBaforeMove();
-
         var $grid = $(this);
-        var movableGrids = [];
-        var attackableGrids = [];
         $grid.toggleClass("active");
 
-        if ($grid.children().length == 1) {
-
-            var $piece1 = $($grid.children()[0]);
-            if ($piece1.attr("color") != action[2]) {
-                action = [];
-
-                movableGrids = movableScope($piece1);
+        if (action.length == 0) {
+            if ($grid.children(".chess").length == 1) {
+                var $piece1 = $($grid.children(".chess")[0]);
+                
+                var movableGrids = movableScope($piece1);
                 color(movableGrids, "movable-scope");
 
-                attackableGrids = attackableScope($piece1);
+                var attackableGrids = attackableScope($piece1);
                 color(attackableGrids, "attackable-scope");
-            }
-        }
-
-        action.push(getPosition($grid).join(""));
-
-        if (action.length == 2 && action[0] != action[1]) {
-            var $fromGrid = $("#"+action[0]);
-            var $toGrid = $("#"+action[1]);
-
-            if ($fromGrid.children()[0] != undefined) {
-                var $piece1 = $($fromGrid.children()[0]);
 
                 action.push($piece1.attr("color"));
                 action.push($piece1.attr("type"));
+                action.push($grid.attr("id"));
+            }
+            return;
+        }
 
-                movableGrids = movableScope($piece1);
-                color(movableGrids, "movable-scope");
+        if (action.length == 3) {
+            var $fromGrid = $("#"+action[2]);
+            var $piece1 = $($fromGrid.children(".chess")[0]);
 
-                attackableGrids = attackableScope($piece1);
-                color(attackableGrids, "attackable-scope");
+            var movableGrids = movableScope($piece1);
+            var attackableGrids = attackableScope($piece1);
 
-                if ($toGrid.children()[0] != undefined) {
-                    var $piece2 = $($toGrid.children()[0]);
+            // 目标格子
+            var gridId = $grid.attr("id");
 
+            if (gridId != action[2] && (movableGrids.indexOf(gridId) != -1 || attackableGrids.indexOf(gridId) != -1)) {
+                // 目标格子处在棋子的可移动范围或者可攻击范围内
+
+                var $fromGrid = $("#"+action[2]);
+                var $toGrid = $grid;
+
+                // 根据目标格子上有没有敌方的棋子, 选择攻击或者移动
+                if ($toGrid.children(".chess").length > 0) {
+                    // 目标格子有其他棋子
+
+                    // 目标格子上的棋子
+                    var $piece2 = $($toGrid.children(".chess")[0]);
                     if ($piece1.attr("color") != $piece2.attr("color")) {
-                        if (movableGrids.indexOf(action[1]) != -1 || attackableGrids.indexOf(action[1]) != -1) {
-                            $fromGrid.remove($piece1);
-                            $toGrid.empty($piece2);
-                            $toGrid.append($piece1);
+                        // 目标格子上的棋子是敌方的棋子
 
-                            color([$fromGrid.attr("id")], "active");
-                            // $fromGrid.toggleClass("active");
-
-                            color([$toGrid.attr("id")], "active");
-                            // $toGrid.toggleClass("active");
-
-                            console.log($piece1.parent());
-                            checkmate($piece1);
-                            
-                        } else {
-                            console.log("invalid move");
-                        }                   
-                    }
-                } else {
-                    if (movableGrids.indexOf(action[1]) != -1 || attackableGrids.indexOf(action[1]) != -1) {
+                        // 攻击
                         $fromGrid.remove($piece1);
+                        $toGrid.empty();
                         $toGrid.append($piece1);
-
-                        color([$fromGrid.attr("id")], "active");
-                        // $fromGrid.toggleClass("active");
-
-                        color([$toGrid.attr("id")], "active");
-                        // $toGrid.toggleClass("active");
-
-                        console.log($piece1.parent());
-                        checkmate($piece1);
-                    } else {
-                        console.log("invalid move");
                     }
-                    
+
+                } else {
+                    // 目标格子有其他棋子
+
+                    // 移动
+                    $fromGrid.remove($piece1);
+                    $toGrid.append($piece1);
                 }
 
+                // 检查棋子类型是不是离开了初始位置的士兵
                 if ($piece1.hasClass("initial")) {
                     $piece1.removeClass("initial");
                 }
+
+
+                /*棋子移动或者攻击完成后, 检查国王是否存在, 是否被将军*/
+                checkmate($piece1);
+                finish();
+            } else {
+                // 目标格子不处在棋子的可移动范围或者可攻击范围内
+
+                // 清除行动记录
+                clearAction();
+                return;
             }
 
-            clearAfterMove();
+            action.push(gridId);
+            return;
+        }
+
+        if (action.length == 4) {
+            if ($grid.children(".chess").length == 1) {
+                var $piece1 = $($grid.children(".chess")[0]);
+
+                if ($piece1.attr("color") != action[0]) {
+                    var movableGrids = movableScope($piece1);
+                    color(movableGrids, "movable-scope");
+
+                    var attackableGrids = attackableScope($piece1);
+                    color(attackableGrids, "attackable-scope");
+
+                    clearAction();
+                    action.push($piece1.attr("color"));
+                    action.push($piece1.attr("type"));
+                    action.push($grid.attr("id"));
+                }                
+            }
+            return;
         }
     });
 
