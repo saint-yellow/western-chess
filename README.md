@@ -13,11 +13,13 @@ https://saint-yellow.github.io/western-chess
 - 布局
 - 单人对局
 - 各类棋子的走法
-- 简单的checkmate perception
+- 简单的checkmate perception\
+\
+(注: 暂未支持士兵升格和王车易位)
 
 ### 以后可能会做的事
 - 优化代码
-- 胜负判定
+- ~~胜负判定~~
 - 更准确的checkmate perception
 - 动画
 - 基于TypeScript的React化
@@ -35,3 +37,4 @@ python -m http.server:6000
 
 ### 更新
 - fix: 黑白双方每回合只能移动自己的一只棋子 (2020-03-23)
+- feature: 简单的胜负判定 (2020-03-25)
