@@ -9,7 +9,7 @@ function game() {
     // 棋盘的纵坐标轴
     const yAxis = [1, 2, 3, 4, 5, 6, 7, 8];
 
-    var action = []
+    var action = [];
 
     // 获取网格的ID
     function getPosition(grid) {
@@ -66,7 +66,7 @@ function game() {
         $(".grid.attackable-scope").removeClass("attackable-scope");
     }
 
-    // 清楚行动记录
+    // 清除行动记录
     function clearAction() {
         while (action.length > 0) {
             action.pop();
